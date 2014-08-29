@@ -1,0 +1,28 @@
+#!/bin/sh
+# build a playlist for mplayer
+# bob@bobnet.co.uk
+# now run: mplayer -playlist yourplaylist.name
+_WORKINGDIR=/tmp                                          # create a working directory
+_EXTENSIONS="mp3 wav wma mp4 ogg flv ogg mpeg mpg aif"    # extensions to play
+
+_DIRECTORYZ="/home/station/Music/ /media/station/465GB/"  # NO SPACES IN PATHNAMES
+
+_PLAYLISTMP="$_WORKINGDIR/$$.tmp"
+# check that the dirs exist
+_PLAYLIST__="/home/station/Music/everything_playlist.m3u" # Where to put the playlist
+> $_PLAYLIST__
+
+for a in `echo $_EXTENSIONS`
+do
+  for b in `echo $_DIRECTORYZ`
+  do
+    > $_WORKINGDIR/$a.m3u
+    find $b -type f -iname "*.$a" > $_WORKINGDIR/$a.m3u
+    cat $_WORKINGDIR/$a.m3u >> $_PLAYLISTMP 
+  done
+done
+
+sort -R $_PLAYLISTMP | sort -r | sort -R > $_PLAYLIST__
+rm $_PLAYLISTMP
+echo "Done!"
+exit 0
