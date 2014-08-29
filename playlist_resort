@@ -1,0 +1,3 @@
+:
+_PLAYLIST__="/home/station/Music/everything_playlist.m3u"
+sort -R $_PLAYLIST__ > /tmp/xxx.$$ ; mv /tmp/xxx.$$ $_PLAYLIST__
