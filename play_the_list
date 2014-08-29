@@ -1,0 +1,12 @@
+#!/bin/bash
+# play the playlist
+# bob@bobnet.co.uk
+
+PLAYLIST="/home/station/Music/everything_playlist.m3u"
+
+mplayer -ao alsa -msglevel identify=6 -playlist $PLAYLIST 2>/dev/null
+
+echo
+echo "Restart by typing: $0"
+echo
+exit 0
